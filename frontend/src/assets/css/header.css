@@ -1,0 +1,44 @@
+/* Adicione isso no seu App.css ou globals.css */
+body {
+  background: #07090e;
+  overflow: hidden;
+}
+
+/* Container das estrelas */
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.stars::after {
+  content: "";
+  position: absolute;
+  top: -2000px;
+  width: 1px;
+  height: 1px;
+  box-shadow: 
+    100px 200px white,
+    300px 600px white,
+    600px 800px white,
+    1200px 900px white,
+    1500px 100px white,
+    1700px 700px white,
+    1900px 400px white,
+    2200px 1100px white;
+  animation: animStar 50s linear infinite;
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(2000px);
+  }
+}
