@@ -10,7 +10,7 @@
 
 body{
   
-      background-color: #07090e;
+      background-color: #07090e !important;
     color:white;
 }
 html {

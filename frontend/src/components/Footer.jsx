@@ -1,12 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faYoutube, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faFilePdf } from "@fortawesome/free-solid-svg-icons";
+import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
 
 function Footer() {
   return (
     <footer className="text-white py-6 mt-12 border-t border-gray-700 bg-[#07090e]">
       <div className="flex flex-col items-center space-y-4 max-w-5xl mx-auto px-4">
-        
         {/* Links sociais */}
         <nav aria-label="Redes sociais">
           <ul className="flex space-x-6">
@@ -38,19 +37,7 @@ function Footer() {
                 />
               </a>
             </li>
-            <li>
-              <a
-                href="/CaiquePetris-CV.pdf"
-                download
-                aria-label="Baixar currículo"
-                className="hover:scale-110 transition-transform"
-              >
-                <FontAwesomeIcon
-                  icon={faFilePdf}
-                  className="w-6 h-6 text-red-400"
-                />
-              </a>
-            </li>
+            <li></li>
           </ul>
         </nav>
 

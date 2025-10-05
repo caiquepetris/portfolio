@@ -1,98 +1,80 @@
-import { FaReact, FaCss3Alt, FaJsSquare,  } from "react-icons/fa";
-import { SiTailwindcss, } from "react-icons/si";
-
+import {
+  FaReact,
+  FaCss3Alt,
+  FaJsSquare,
+  FaGitAlt,
+  FaBootstrap,
+  FaFigma,
+} from "react-icons/fa";
+import {
+  SiTailwindcss,
+  SiNodedotjs, // 👈 Import do ícone oficial do Node.js
+} from "react-icons/si";
 
 function Skills() {
-  const skills = [
-    { nome: "React", icon: <FaReact className="text-sky-400 w-10 h-10" /> },
-    { nome: "JavaScript", icon: <FaJsSquare className="text-yellow-400 w-10 h-10" /> },
-    { nome: "TailwindCSS", icon: <SiTailwindcss className="text-cyan-400 w-10 h-10" /> },
-    { nome: "CSS3", icon: <FaCss3Alt className="text-blue-500 w-10 h-10" /> },
-  
-  ];
-
-  const certifications = [
+  const categories = [
     {
-      titulo: "Cloud Computing Fundamentals",
-      emissor: "IBM",
-      ano: "2025",
-      link: "https://www.credly.com/badges/d41ac20f-2042-4950-aaba-fc0e158759af/linked_in_profile",
+      nome: "Frontend",
+      skills: [
+        { nome: "React", icon: <FaReact className="text-sky-400 w-12 h-12" /> },
+        { nome: "JavaScript", icon: <FaJsSquare className="text-yellow-400 w-12 h-12" /> },
+        { nome: "TailwindCSS", icon: <SiTailwindcss className="text-cyan-400 w-12 h-12" /> },
+        { nome: "Bootstrap", icon: <FaBootstrap className="text-[#7952B3] w-12 h-12" /> },
+        { nome: "CSS3", icon: <FaCss3Alt className="text-blue-500 w-12 h-12" /> },
+        
+      ],
+    },
+    {
+      nome: "Backend",
+      skills: [
+        { nome: "Node.js", icon: <SiNodedotjs className="text-green-500 w-12 h-12" /> }, // ✅ Adicionado aqui
+      ],
+    },
+    {
+      nome: "Ferramentas",
+      skills: [
+        { nome: "Git", icon: <FaGitAlt className="text-[#F05033] w-12 h-12" /> },
+        { nome: "Figma", icon: <FaFigma className="text-[#F24E1E] w-12 h-12" /> },
+,
+      ],
     },
   ];
 
   return (
-    <>
-      {/* ===== Skills ===== */}
-      <section
-        id="skills"
-        className="relative py-20 text-white overflow-hidden
-        before:absolute before:top-0 before:left-0 before:w-full before:h-16 before:bg-[#0b0d12]/90 before:-skew-y-3
-        after:absolute after:bottom-0 after:left-0 after:w-full after:h-16 after:bg-[#0b0d12]/90 after:skew-y-3"
-        style={{
-          background: "rgba(11, 13, 18, 0.9)",
-          backdropFilter: "blur(10px)",
-          WebkitBackdropFilter: "blur(10px)",
-        }}
-      >
-        <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center relative z-10">
-          Skills
-        </h2>
+    <section id="skills" className="py-20 bg-[#07090e] text-white text-center">
+      <h2 className="text-4xl font-bold mb-16 text-gray-200">Minhas Skills</h2>
 
-        {/* Carrossel */}
-        <div className="relative w-full overflow-hidden z-10">
-          <div className="flex gap-6 animate-scroll">
-            {[...skills, ...skills].map((skill, index) => (
-              <div
-                key={index}
-                className="min-w-[180px] p-6 border border-gray-700 rounded-xl flex flex-col items-center gap-3
-                bg-[#0d1117]/70 backdrop-blur-lg shadow-xl shadow-black/50"
-              >
-                {skill.icon}
-                <h3 className="text-lg font-semibold">{skill.nome}</h3>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <div className="flex flex-col items-center gap-16 max-w-6xl mx-auto px-6">
+        {categories.map((category, index) => (
+          <div key={index} className="w-full text-center">
+            <h3 className="text-2xl font-semibold text-gray-300 mb-8 tracking-wide">
+              {category.nome}
+            </h3>
 
-      {/* ===== Certificações ===== */}
-      <section id="certificacoes" className="py-16 bg-[#0d1016] text-white">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          Certificações
-        </h2>
-
-        <div
-          className={`grid gap-6 max-w-4xl mx-auto ${
-            certifications.length === 1
-              ? "grid-cols-1 justify-items-center"
-              : "md:grid-cols-2"
-          }`}
-        >
-          {certifications.map((cert, index) => (
-            <div
-              key={index}
-              className="p-4 border border-gray-700 rounded-xl text-center w-full max-w-[300px] 
-              shadow-lg shadow-black/40 bg-[#0d1117]/80 backdrop-blur-md"
-            >
-              <h3 className="text-xl font-semibold">{cert.titulo}</h3>
-              <p className="text-gray-400 mb-2">
-                {cert.emissor} • {cert.ano}
-              </p>
-              {cert.link && (
-                <a
-                  href={cert.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-400 hover:underline"
+            <div className="flex flex-wrap justify-center gap-8">
+              {category.skills.map((skill, i) => (
+                <div
+                  key={i}
+                  className="group relative bg-[#0b0d12]/60 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center justify-center
+                             shadow-md shadow-black/40 hover:shadow-gray-400/30 transition-all duration-300 hover:-translate-y-2"
                 >
-                  Ver certificado
-                </a>
-              )}
+                  <div className="mb-3 transform group-hover:scale-110 transition-transform duration-300">
+                    {skill.icon}
+                  </div>
+                  <h4 className="text-sm text-gray-400 group-hover:text-gray-100 transition-colors duration-300 tracking-wide">
+                    {skill.nome}
+                  </h4>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
-    </>
+          </div>
+        ))}
+      </div>
+
+      <p className="text-gray-500 text-sm mt-16">
+        Um conjunto equilibrado de tecnologias modernas para desenvolvimento web completo.
+      </p>
+    </section>
   );
 }
 

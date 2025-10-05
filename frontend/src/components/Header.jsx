@@ -1,12 +1,13 @@
 import { FaEnvelope } from "react-icons/fa";
 import { ReactTyped } from "react-typed";
+import '../assets/css/header.css'
+
 
 
 function Header() {
   return (
-    <header className="h-screen relative bg-[#07090e] text-white flex items-center justify-center">
-      {/* Camada das estrelas */}
-      <div className="stars"></div>
+   <header className="h-screen relative text-white flex items-center justify-center">
+
 
       {/* Conteúdo */}
       <div className="text-center px-6 relative z-10">
