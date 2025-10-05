@@ -1,0 +1,29 @@
+{
+  "name": "portfolio-1",
+  "version": "1.0.0",
+  "description": "Aqui você encontra um resumo das minhas experiências, habilidades e projetos como estudante e desenvolvedor fullstack.\r Este projeto foi criado para ser meu cartão de visitas profissional e demonstrar meu perfil técnico para o mercado de tecnologia.\r # ✨ Visão Geral",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix frontend\" \"npm run dev --prefix backend\"",
+    "start": "concurrently \"cd frontend && npm run start\" \"cd backend && npm run start\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caiquepetris/portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caiquepetris/portfolio/issues"
+  },
+  "homepage": "https://github.com/caiquepetris/portfolio#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^7.0.1",
+    "@fortawesome/react-fontawesome": "^3.0.2"
+  }
+}
