@@ -2,7 +2,7 @@
 Aqui você encontra um resumo das minhas experiências, habilidades e projetos como estudante e desenvolvedor fullstack.
 Este projeto foi criado para ser meu cartão de visitas profissional e demonstrar meu perfil técnico para o mercado de tecnologia.
 # ✨ Visão Geral
-
+v1.0.0
 
 
 # 🚀 Tecnologias Utilizadas
