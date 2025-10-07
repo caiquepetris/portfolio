@@ -15,17 +15,22 @@ function Forms() {
     error: null,
   });
 
+  // 🧠 URL dinâmica: Render na produção, localhost no dev
+  const API_URL =
+    import.meta.env.VITE_API_URL || "https://portfolio-4183.onrender.com";
+  const cleanURL = API_URL.replace(/\/$/, ""); // remove barra final
+
+  // 🎯 Atualiza campos
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setErrors({ ...errors, [e.target.name]: "" });
   };
 
+  // 🧩 Validação simples
   const validate = () => {
     let newErrors = {};
 
-    if (!formData.nome.trim()) {
-      newErrors.nome = "Por favor, digite seu nome.";
-    }
+    if (!formData.nome.trim()) newErrors.nome = "Por favor, digite seu nome.";
 
     if (!formData.email.trim()) {
       newErrors.email = "O email é obrigatório.";
@@ -42,6 +47,7 @@ function Forms() {
     return newErrors;
   };
 
+  // 📤 Envio do formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
@@ -54,18 +60,29 @@ function Forms() {
     setStatus({ loading: true, success: null, error: null });
 
     try {
-      const response = await fetch("http://localhost:3001/sendEmail", {
+      console.log("🚀 Enviando formulário...");
+      console.log("🌍 URL base:", cleanURL);
+      console.log("📦 Dados enviados:", formData);
+
+      const response = await fetch(`${cleanURL}/sendEmail`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
+      console.log("📬 Status HTTP:", response.status);
+
+      const result = await response.json().catch((err) => {
+        console.error("❌ Erro ao converter JSON:", err);
+        return { error: "Resposta inválida do servidor" };
+      });
+
+      console.log("📦 Resposta do servidor:", result);
 
       if (response.ok) {
         setStatus({
           loading: false,
-          success: "Mensagem enviada com sucesso!",
+          success: "✅ Mensagem enviada com sucesso!",
           error: null,
         });
         setFormData({ nome: "", email: "", message: "" });
@@ -77,6 +94,7 @@ function Forms() {
         });
       }
     } catch (err) {
+      console.error("💥 Erro de conexão com o servidor:", err);
       setStatus({
         loading: false,
         success: null,
@@ -87,17 +105,14 @@ function Forms() {
 
   return (
     <section className="py-16 bg-black text-white text-center" id="forms">
-      {/* Título */}
       <h1 className="text-3xl md:text-4xl font-bold mb-4">
         Entre em contato comigo
       </h1>
       <p className="text-gray-400 max-w-2xl mx-auto mb-10">
         Tem um projeto em mente, uma oportunidade profissional ou só quer trocar
-        uma ideia? Fique à vontade para me mandar uma mensagem — responderei o
-        mais rápido possível.
+        uma ideia? Me manda uma mensagem — responderei o mais rápido possível.
       </p>
 
-      {/* Form com fade-in/out */}
       <motion.form
         onSubmit={handleSubmit}
         noValidate
@@ -106,9 +121,9 @@ function Forms() {
         whileInView={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -50 }}
         transition={{ duration: 0.8 }}
-        viewport={{ once: false, amount: 0.3 }} // amount define quanta parte do form precisa aparecer pra ativar
+        viewport={{ once: false, amount: 0.3 }}
       >
-        {/* Nome + Email lado a lado */}
+        {/* Nome + Email */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div>
             <label htmlFor="nome" className="block text-sm font-medium mb-1">
@@ -124,7 +139,6 @@ function Forms() {
               className={`w-full bg-neutral-900 border ${
                 errors.nome ? "border-red-500" : "border-gray-700"
               } rounded-md p-3 text-white`}
-              required
             />
             {errors.nome && (
               <p className="text-red-500 text-sm mt-1">{errors.nome}</p>
@@ -145,7 +159,6 @@ function Forms() {
               className={`w-full bg-neutral-900 border ${
                 errors.email ? "border-red-500" : "border-gray-700"
               } rounded-md p-3 text-white`}
-              required
             />
             {errors.email && (
               <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -168,8 +181,7 @@ function Forms() {
             className={`w-full bg-neutral-900 border ${
               errors.message ? "border-red-500" : "border-gray-700"
             } rounded-md p-3 text-white resize-none`}
-            required
-          ></textarea>
+          />
           {errors.message && (
             <p className="text-red-500 text-sm mt-1">{errors.message}</p>
           )}
@@ -186,7 +198,7 @@ function Forms() {
           </button>
         </div>
 
-        {/* Status */}
+        {/* Mensagens de status */}
         {status.success && (
           <p className="mt-4 text-green-500 text-center">{status.success}</p>
         )}
