@@ -7,34 +7,33 @@ dotenv.config();
 
 const app = express();
 
-// 🔐 CORS — libera para seu frontend no Vercel e localhost
+// ✅ Configuração de CORS específica para Vercel + localhost
 app.use(
   cors({
     origin: [
-      "https://portfolio-eta-black-11.vercel.app", // seu frontend na Vercel
-      "http://localhost:5173", // ambiente local (Vite)
+      "https://caiquepetris-portfolio.vercel.app", // seu site Vercel
+      "http://localhost:5173", // ambiente local (dev)
     ],
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
   })
 );
 
 app.use(express.json());
 
-// 🚀 Endpoint raiz pra checar se o servidor está de pé
 app.get("/", (req, res) => {
   res.send("Servidor backend funcionando 🚀");
 });
 
-// 📬 Configuração do Resend
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// ✉️ Rota para envio de email
 app.post("/sendEmail", async (req, res) => {
   const { nome, email, message } = req.body;
 
-  console.log("📨 Requisição recebida em /sendEmail");
-  console.log("👤 Nome:", nome);
-  console.log("📧 Email:", email);
-  console.log("💬 Mensagem:", message);
+  console.log("📩 Requisição recebida:");
+  console.log("→ Nome:", nome);
+  console.log("→ Email:", email);
+  console.log("→ Mensagem:", message);
 
   try {
     const result = await resend.emails.send({
@@ -49,7 +48,7 @@ app.post("/sendEmail", async (req, res) => {
       `,
     });
 
-    console.log("✅ Email enviado com sucesso:", result);
+    console.log("✅ Email enviado:", result);
     res.status(200).json({ success: true, result });
   } catch (err) {
     console.error("❌ Erro ao enviar email:", err);
@@ -57,7 +56,6 @@ app.post("/sendEmail", async (req, res) => {
   }
 });
 
-// 🌍 Porta dinâmica (Render usa variável própria)
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`🚀 Backend rodando na porta ${PORT}`);
