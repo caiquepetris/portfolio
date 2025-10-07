@@ -6,7 +6,7 @@ import Experience from "./components/Experience";
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Header from './components/Header';
-import Certifications from './components/certifications';
+import Certifications from './components/Certifications';
 
 
 function App() {
