@@ -6,7 +6,7 @@ const aboutData = {
   idade: 20,
   curso: "Ciência da Computação",
   descricao:
-    "Apaixonado por tecnologia, estou construindo uma base sólida para atuar como desenvolvedor fullstack.",
+    " estou construindo uma base sólida para atuar como desenvolvedor fullstack.",
 };
 
 function AboutMe() {
@@ -30,7 +30,7 @@ function AboutMe() {
       <article className="max-w-md text-center md:text-left">
         <h2 className="text-3xl font-bold mb-4 text-white ">Sobre mim:</h2>
         <p className="text-gray-300 leading-relaxed">
-          Olá! Sou <strong>{aboutData.nome}</strong>, tenho {aboutData.idade} anos e sou estudante de{" "}
+          Tenho {aboutData.idade} anos e sou estudante de{" "}
           <strong>{aboutData.curso}</strong>. {aboutData.descricao}
         </p>
       </article>
