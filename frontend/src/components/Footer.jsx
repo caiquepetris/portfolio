@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faYoutube, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+
 
 function Footer() {
   return (
@@ -11,15 +11,15 @@ function Footer() {
           <ul className="flex space-x-6">
             <li>
               <a
-                href="https://www.youtube.com/@caiquepetris"
+                href="https://github.com/caiquepetris"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="YouTube"
+                aria-label="GitHub"
                 className="hover:scale-110 transition-transform"
               >
                 <FontAwesomeIcon
-                  icon={faYoutube}
-                  className="w-6 h-6 text-red-500"
+                  icon={faGithub}
+                  className="w-6 h-6 text-white-500"
                 />
               </a>
             </li>
