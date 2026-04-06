@@ -76,15 +76,19 @@ function Forms() {
         return { error: "Resposta inválida do servidor" };
       });
 
-      console.log("📦 Resposta do servidor:", result);
 
       if (response.ok) {
         setStatus({
           loading: false,
-          success: "✅ Mensagem enviada com sucesso!",
+          success: "Mensagem enviada com sucesso!",
           error: null,
         });
         setFormData({ nome: "", email: "", message: "" });
+
+        setTimeout(() => {
+          setStatus({ loading: false, success: null, error: null });
+        }, 5000);
+
       } else {
         setStatus({
           loading: false,
@@ -93,7 +97,7 @@ function Forms() {
         });
       }
     } catch (err) {
-      console.error("💥 Erro de conexão com o servidor:", err);
+      console.error("Erro de conexão com o servidor:", err);
       setStatus({
         loading: false,
         success: null,
