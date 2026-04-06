@@ -15,12 +15,11 @@ function Forms() {
     error: null,
   });
 
-  // 🧠 URL dinâmica: Render na produção, localhost no dev
   const API_URL =
     import.meta.env.VITE_API_URL || "https://portfolio-4183.onrender.com";
-  const cleanURL = API_URL.replace(/\/$/, ""); // remove barra final
+  const cleanURL = API_URL.replace(/\/$/, ""); 
 
-  // 🎯 Atualiza campos
+  
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setErrors({ ...errors, [e.target.name]: "" });
@@ -70,7 +69,7 @@ function Forms() {
         body: JSON.stringify(formData),
       });
 
-      console.log("📬 Status HTTP:", response.status);
+      
 
       const result = await response.json().catch((err) => {
         console.error("❌ Erro ao converter JSON:", err);
@@ -188,15 +187,46 @@ function Forms() {
         </div>
 
         {/* Botão */}
-        <div className="text-center">
-          <button
-            type="submit"
-            disabled={status.loading}
-            className="px-6 py-3 rounded-md font-medium bg-blue-600 hover:bg-blue-700 transition text-white"
-          >
-            {status.loading ? "Enviando..." : "Enviar"}
-          </button>
-        </div>
+        {/* Botão */}
+<div className="text-center">
+  <button
+    type="submit"
+    disabled={status.loading}
+    className="px-6 py-3 rounded-md font-medium bg-blue-600 hover:bg-blue-700 transition text-white disabled:opacity-70 disabled:cursor-not-allowed flex items-center gap-2 mx-auto"
+  >
+    {status.loading ? (
+      <>
+        <svg
+          className="animate-spin h-4 w-4 text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            className="opacity-25"
+            cx="12" cy="12" r="10"
+            stroke="currentColor" strokeWidth="4"
+          />
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8v8z"
+          />
+        </svg>
+        Enviando...
+      </>
+    ) : (
+      "Enviar"
+    )}
+  </button>
+
+  
+  {status.loading && (
+    <p className="text-gray-400 text-sm mt-3 animate-pulse">
+      ⏳ O servidor pode levar alguns segundos para responder...
+    </p>
+  )}
+</div>
 
         {/* Mensagens de status */}
         {status.success && (

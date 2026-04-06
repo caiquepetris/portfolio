@@ -7,12 +7,11 @@ dotenv.config();
 
 const app = express();
 
-// ✅ Configuração de CORS específica para Vercel + localhost
 app.use(
   cors({
     origin: [
-      "https://caiquepetris-portfolio.vercel.app", // seu site Vercel
-      "http://localhost:5173", // ambiente local (dev)
+      "https://caiquepetris-portfolio.vercel.app", 
+      "http://localhost:5173", 
     ],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
@@ -22,7 +21,7 @@ app.use(
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Servidor backend funcionando 🚀");
+  res.send("Servidor backend funcionando ");
 });
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -48,7 +47,7 @@ app.post("/sendEmail", async (req, res) => {
       `,
     });
 
-    console.log("✅ Email enviado:", result);
+    console.log(" Email enviado com sucesso!:", result);
     res.status(200).json({ success: true, result });
   } catch (err) {
     console.error("❌ Erro ao enviar email:", err);
@@ -58,5 +57,5 @@ app.post("/sendEmail", async (req, res) => {
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`🚀 Backend rodando na porta ${PORT}`);
+  console.log(` Backend rodando na porta ${PORT}`);
 });
