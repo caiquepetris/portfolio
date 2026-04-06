@@ -29,7 +29,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 app.post("/sendEmail", async (req, res) => {
   const { nome, email, message } = req.body;
 
-  console.log("📩 Requisição recebida:");
+  console.log(" Requisição recebida:");
   console.log("→ Nome:", nome);
   console.log("→ Email:", email);
   console.log("→ Mensagem:", message);
@@ -50,7 +50,7 @@ app.post("/sendEmail", async (req, res) => {
     console.log(" Email enviado com sucesso!:", result);
     res.status(200).json({ success: true, result });
   } catch (err) {
-    console.error("❌ Erro ao enviar email:", err);
+    console.error("Erro ao enviar email:", err);
     res.status(500).json({ success: false, error: err.message });
   }
 });
