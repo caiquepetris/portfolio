@@ -7,26 +7,20 @@ Este projeto foi criado para ser meu cartão de visitas profissional e demonstra
 
   React.js (Html,Css e Javascript), Node.js, TailwindCSS
 
- ## 🖼️ Screenshots
-
-
-
- # 🔗 Links Importantes
+# 🔗 Links Importantes
   
  Hospedei meu backend aqui: https://render.com/
  Hospedei meu frontend aqui: https://vercel.com/
+
  
-# 📝 Como Rodar Localmente
-
+# 📝 Como Rodar Localmente?
 Pré-requisitos: 
-
-Ter o node.js instalado e rodar npm install
-
+1. Ter o node.js Instalado.
+2. Ao clonar o repositório, abrir o terminal, dar cd no front ou back, e dar npm install e npm run dev.
 
 # 🤝 Contato
+ Email: caiquepetris@gmail.com
 
-caiquepetris@gmail.com
-@caiquepetris_
 
 
 
