@@ -70,7 +70,7 @@ app.post("/sendEmail", async (req, res) => {
   const safeMessage = sanitize(message);
 
   // ✅ Logs sem dados pessoais (apenas auditoria técnica)
-  console.log(`[${new Date().toISOString()}] Nova requisição de contato recebida.`);
+
 
   try {
     await resend.emails.send({
@@ -86,7 +86,7 @@ app.post("/sendEmail", async (req, res) => {
       `,
     });
 
-    console.log(`[${new Date().toISOString()}] E-mail enviado com sucesso.`);
+   
 
     // ✅ Retorna apenas o necessário — sem expor o objeto interno do Resend
     res.status(200).json({ success: true });
@@ -99,6 +99,3 @@ app.post("/sendEmail", async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Backend rodando na porta ${PORT}`);
-});

@@ -59,9 +59,7 @@ function Forms() {
     setStatus({ loading: true, success: null, error: null });
 
     try {
-      console.log("🚀 Enviando formulário...");
-      console.log("🌍 URL base:", cleanURL);
-      console.log("📦 Dados enviados:", formData);
+   
 
       const response = await fetch(`${cleanURL}/sendEmail`, {
         method: "POST",
@@ -72,7 +70,6 @@ function Forms() {
       
 
       const result = await response.json().catch((err) => {
-        console.error("❌ Erro ao converter JSON:", err);
         return { error: "Resposta inválida do servidor" };
       });
 
@@ -113,7 +110,7 @@ function Forms() {
       </h1>
       <p className="text-gray-400 max-w-2xl mx-auto mb-10">
         Tem um projeto em mente, uma oportunidade profissional ou só quer trocar
-        uma ideia? Me manda uma mensagem — responderei o mais rápido possível.
+        uma ideia? Me manda um e-mail que eu responderei o mais rápido possível.
       </p>
 
       <motion.form
@@ -138,7 +135,7 @@ function Forms() {
               name="nome"
               value={formData.nome}
               onChange={handleChange}
-              placeholder="Seu nome"
+              placeholder="Seu nome..."
               className={`w-full bg-neutral-900 border ${
                 errors.nome ? "border-red-500" : "border-gray-700"
               } rounded-md p-3 text-white`}
@@ -217,7 +214,7 @@ function Forms() {
             d="M4 12a8 8 0 018-8v8z"
           />
         </svg>
-        Enviando...
+        Estamos enviando sua mensagem... Enviando...
       </>
     ) : (
       "Enviar"
@@ -227,7 +224,7 @@ function Forms() {
   
   {status.loading && (
     <p className="text-gray-400 text-sm mt-3 animate-pulse">
-      ⏳ O servidor pode levar alguns segundos para responder...
+      Aguarde ! Estamos ligando o servidor. ele pode levar alguns segundos para responder...
     </p>
   )}
 </div>
