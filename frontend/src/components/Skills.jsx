@@ -1,16 +1,18 @@
 import {
   FaReact,
-  FaCss3Alt,
   FaJsSquare,
   FaGitAlt,
   FaBootstrap,
   FaFigma,
+  FaAws,
 } from "react-icons/fa";
 import {
   SiTailwindcss,
-  SiNodedotjs, // 👈 Import do ícone oficial do Node.js
+  SiNodedotjs,
+  SiTypescript,
 } from "react-icons/si";
 
+import { TbBrandCSharp } from "react-icons/tb";
 function Skills() {
   const categories = [
     {
@@ -20,14 +22,16 @@ function Skills() {
         { nome: "JavaScript", icon: <FaJsSquare className="text-yellow-400 w-12 h-12" /> },
         { nome: "TailwindCSS", icon: <SiTailwindcss className="text-cyan-400 w-12 h-12" /> },
         { nome: "Bootstrap", icon: <FaBootstrap className="text-[#7952B3] w-12 h-12" /> },
-        { nome: "CSS3", icon: <FaCss3Alt className="text-blue-500 w-12 h-12" /> },
-        
+
+
       ],
     },
     {
       nome: "Backend",
       skills: [
-        { nome: "Node.js", icon: <SiNodedotjs className="text-green-500 w-12 h-12" /> }, // ✅ Adicionado aqui
+        { nome: "Node.js", icon: <SiNodedotjs className="text-green-500 w-12 h-12" /> },
+        { nome: "C# / .NET ", icon: <TbBrandCSharp className="text-purple-500 w-12 h-12" /> },
+        { nome: "TypeScript", icon: <SiTypescript className="text-blue-500 w-12 h-12" /> },
       ],
     },
     {
@@ -35,7 +39,14 @@ function Skills() {
       skills: [
         { nome: "Git", icon: <FaGitAlt className="text-[#F05033] w-12 h-12" /> },
         { nome: "Figma", icon: <FaFigma className="text-[#F24E1E] w-12 h-12" /> },
-,
+        ,
+      ],
+    },
+    {
+      nome: "Cloud & Infra",
+      skills: [
+        { nome: "AWS", icon: <FaAws className="text-[#FF9900] w-12 h-12" /> },
+
       ],
     },
   ];

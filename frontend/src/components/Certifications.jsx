@@ -6,21 +6,32 @@ function Certifications() {
       ano: "2025",
       link: "https://www.credly.com/badges/d41ac20f-2042-4950-aaba-fc0e158759af/linked_in_profile",
     },
+    {
+      titulo: "C# Foundational",
+      emissor: "FreeCodeCamp",
+      ano: "2026",
+      link: "####",
+    },
+    {
+      titulo: "AWS Cloud Practitioner",
+      emissor: "AWS",
+      ano: "2026",
+      link: "####",
+    },
   ];
 
   return (
-   <section id="certificacoes" className="py-16 bg-[#07090e] text-white">
+    <section id="certificacoes" className="py-16 bg-[#07090e] text-white">
 
       <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
         Certificações
       </h2>
 
       <div
-        className={`grid gap-6 max-w-4xl mx-auto ${
-          certifications.length === 1
-            ? "grid-cols-1 justify-items-center"
-            : "md:grid-cols-2"
-        }`}
+        className={`grid gap-6 max-w-4xl mx-auto ${certifications.length === 1
+          ? "grid-cols-1 justify-items-center"
+          : "md:grid-cols-2"
+          }`}
       >
         {certifications.map((cert, index) => (
           <div
