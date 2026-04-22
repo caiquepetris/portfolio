@@ -5,7 +5,6 @@ import { Resend } from "resend";
 import rateLimit from "express-rate-limit";
 
 dotenv.config();
-
 const app = express();
 
 app.use(
@@ -88,3 +87,6 @@ app.post("/sendEmail", async (req, res) => {
   }
 });
 const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});
