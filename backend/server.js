@@ -37,9 +37,7 @@ function sanitize(str) {
 }
 
 
-function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
+function isValidEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);}
 
 app.post("/sendEmail", async (req, res) => {
   const { nome, email, message } = req.body;
