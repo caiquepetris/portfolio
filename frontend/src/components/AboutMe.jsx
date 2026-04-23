@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const aboutData = {
   nome: "Caique Petris",
-  idade: 20,
+  idade: 21,
   curso: "Ciência da Computação",
   descricao:
     " estou construindo uma base sólida para atuar como desenvolvedor fullstack.",
