@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-
+import { BsSubstack } from "react-icons/bs";
 
 function Footer() {
   return (
@@ -19,25 +19,34 @@ function Footer() {
               >
                 <FontAwesomeIcon
                   icon={faGithub}
-                  className="w-6 h-6 text-white-500"
+                  className="w-6 h-6 text-white"
                 />
               </a>
             </li>
             <li>
               <a
-                href="https://www.linkedin.com/in/cpetris/"
+                href="https://www.linkedin.com/in/caiquepetris/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="hover:scale-110 transition-transform"
-              >
-                <FontAwesomeIcon
+                className="hover:scale-110 transition-transform">
+                              <FontAwesomeIcon
                   icon={faLinkedin}
                   className="w-6 h-6 text-blue-500"
                 />
               </a>
             </li>
-            <li></li>
+            <li>
+              <a
+                href="https://substack.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Substack"
+                className="hover:scale-110 transition-transform"
+              >
+                <BsSubstack className="w-6 h-6 text-[#FF6719]" />
+              </a>
+            </li>
           </ul>
         </nav>
 
