@@ -4,16 +4,29 @@ function Experience() {
   const experiencias = [
     {
       empresa: "T-Systems",
+      cor: "#e20074",
       titulo:
-        'Estágio de Suporte de TI Industrial <span class="text-[#e20074] font-semibold">@ T-Systems</span>',
+        'Estágio de Suporte de TI Industrial <span class="font-semibold">@ T-Systems</span>',
       periodo: "Abril de 2025 - Atualmente",
       bullets: [
         "Atuo diretamente no cliente <strong>Mercedes-Benz</strong>, oferecendo suporte de TI para ambientes industriais.",
       ],
     },
+    {
+      empresa: "Takaya Móveis",
+      cor: "#0be50b",
+      titulo:
+        'Desenvolvedor Web FullStack <span class="font-semibold">@ Takaya Móveis</span>',
+      periodo: "Janeiro de 2025 - Abril de 2025",
+      bullets: [
+        "Atuei na criação de um site institucional do 0 para uma empresa de móveis planejados, utilizando HTML, CSS, JavaScript, MySQL e PHP.",
+      ],
+    },
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const experienciaAtual = experiencias[activeIndex];
 
   return (
     <section id="experiencias" className="py-20 bg-[#07090e] text-white">
@@ -28,11 +41,16 @@ function Experience() {
               <button
                 key={i}
                 onClick={() => setActiveIndex(i)}
-                className={`text-left px-4 py-2 rounded-md transition-colors ${
+                className="text-left px-4 py-2 rounded-md transition-colors"
+                style={
                   activeIndex === i
-                    ? "text-[#e20074] border-l-2 border-[#e20074] bg-[#111]"
-                    : "text-gray-400 hover:text-white hover:bg-[#111]"
-                }`}
+                    ? {
+                        color: exp.cor,
+                        borderLeft: `2px solid ${exp.cor}`,
+                        backgroundColor: "#111",
+                      }
+                    : {}
+                }
               >
                 {exp.empresa}
               </button>
@@ -42,15 +60,18 @@ function Experience() {
           <div className="md:w-3/4 text-lg">
             <h3
               className="text-2xl font-semibold mb-3 leading-snug"
+              style={{ color: experienciaAtual.cor }}
               dangerouslySetInnerHTML={{
-                __html: experiencias[activeIndex].titulo,
+                __html: experienciaAtual.titulo,
               }}
             />
+
             <p className="text-base text-gray-400 mb-6">
-              {experiencias[activeIndex].periodo}
+              {experienciaAtual.periodo}
             </p>
+
             <ul className="list-disc list-inside space-y-3 text-gray-300 leading-relaxed text-lg">
-              {experiencias[activeIndex].bullets.map((b, j) => (
+              {experienciaAtual.bullets.map((b, j) => (
                 <li key={j} dangerouslySetInnerHTML={{ __html: b }} />
               ))}
             </ul>

@@ -38,7 +38,7 @@ function Footer() {
             </li>
             <li>
               <a
-                href="https://substack.com"
+                href="https://caiquepetris.substack.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Substack"
@@ -50,7 +50,6 @@ function Footer() {
           </ul>
         </nav>
 
-        {/* Texto institucional */}
         <div className="text-center text-xs text-gray-400 leading-relaxed">
           <p>
             <strong>&copy; PETRIS</strong> {new Date().getFullYear()} — Todos os
