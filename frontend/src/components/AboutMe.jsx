@@ -1,15 +1,15 @@
 import minhaFoto from "../assets/images/IMG_5827.JPG";
 import { motion } from "framer-motion";
+import { useLanguage } from "../context/LanguageContext";
 
 const aboutData = {
   nome: "Caique Petris",
   idade: 21,
-  curso: "Ciência da Computação",
-  descricao:
-    " estou construindo uma base sólida para atuar como desenvolvedor fullstack.",
 };
 
 function AboutMe() {
+  const { t } = useLanguage();
+
   return (
     <motion.section
       id="about"
@@ -28,10 +28,10 @@ function AboutMe() {
       </figure>
 
       <article className="max-w-md text-center md:text-left">
-        <h2 className="text-3xl font-bold mb-4 text-white ">Sobre mim:</h2>
+        <h2 className="text-3xl font-bold mb-4 text-white ">{t("about.title")}</h2>
         <p className="text-gray-300 leading-relaxed">
-          Tenho {aboutData.idade} anos e sou estudante de{" "}
-          <strong>{aboutData.curso}</strong>. {aboutData.descricao}
+          {t("about.age_prefix")} {aboutData.idade} {t("about.age_suffix")}{" "}
+          <strong>{t("about.course")}</strong>.{t("about.description")}
         </p>
       </article>
     </motion.section>

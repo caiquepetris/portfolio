@@ -1,4 +1,8 @@
+import { useLanguage } from "../context/LanguageContext";
+
 function Certifications() {
+  const { t } = useLanguage();
+
   const certifications = [
     {
       titulo: "Cloud Computing Fundamentals",
@@ -12,7 +16,7 @@ function Certifications() {
    <section id="certificacoes" className="py-16 bg-[#07090e] text-white">
 
       <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-        Certificações
+        {t("certifications.title")}
       </h2>
 
       <div
@@ -39,7 +43,7 @@ function Certifications() {
                 rel="noopener noreferrer"
                 className="text-blue-400 hover:underline"
               >
-                Ver certificado
+                {t("certifications.view_btn")}
               </a>
             )}
           </div>

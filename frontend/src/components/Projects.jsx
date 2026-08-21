@@ -1,8 +1,12 @@
+import { useLanguage } from "../context/LanguageContext";
+
 function Projects() {
+  const { t } = useLanguage();
+
   const projects = [
     {
-      title: "Portfólio",
-      description: "Portfólio pessoal.",
+      title: t("projects.items.portfolio.title"),
+      description: t("projects.items.portfolio.description"),
       link: "https://github.com/caiquepetris/portfolio",
       tech: ["React", "TailwindCSS", "Node.js"],
     },
@@ -12,7 +16,7 @@ function Projects() {
     <section className="py-16" style={{ backgroundColor: "#07090e" }}>
       <div className="max-w-6xl mx-auto px-6">
         <h2 className="text-3xl font-bold mb-12 text-center text-white">
-          Projetos
+          {t("projects.title")}
         </h2>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -54,7 +58,7 @@ function Projects() {
                 rel="noopener noreferrer"
                 className="text-gray-300 font-medium hover:text-white mt-auto transition"
               >
-                Ver projeto →
+                {t("projects.view_btn")}
               </a>
             </div>
           ))}

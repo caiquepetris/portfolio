@@ -1,38 +1,20 @@
 import { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 function Experience() {
-  const experiencias = [
-    {
-      empresa: "T-Systems",
-      cor: "#e20074",
-      titulo:
-        'Estágio de Suporte de TI Industrial <span class="font-semibold">@ T-Systems</span>',
-      periodo: "Abril de 2025 - Atualmente",
-      bullets: [
-        "Atuo diretamente no cliente <strong>Mercedes-Benz</strong>, oferecendo suporte de TI para ambientes industriais.",
-      ],
-    },
-    {
-      empresa: "Takaya Móveis",
-      cor: "#0be50b",
-      titulo:
-        'Desenvolvedor Web FullStack <span class="font-semibold">@ Takaya Móveis</span>',
-      periodo: "Janeiro de 2025 - Abril de 2025",
-      bullets: [
-        "Atuei na criação de um site institucional do 0 para uma empresa de móveis planejados, utilizando HTML, CSS, JavaScript, MySQL e PHP.",
-      ],
-    },
-  ];
+  const { t } = useLanguage();
+  const experiencias = t("experience.items");
 
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const experienciaAtual = experiencias[activeIndex];
+  // In case the list changes length or language updates, ensure we don't crash
+  const experienciaAtual = experiencias[activeIndex] || experiencias[0] || {};
 
   return (
     <section id="experiencias" className="py-20 bg-[#07090e] text-white">
       <div className="max-w-5xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold mb-10 text-left pb-20">
-          Minhas experiências:
+          {t("experience.title")}
         </h2>
 
         <div className="flex flex-col md:flex-row gap-12">

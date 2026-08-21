@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "../context/LanguageContext";
 
 function Forms() {
+  const { t } = useLanguage();
+
   const [formData, setFormData] = useState({
     nome: "",
     email: "",
@@ -19,7 +22,7 @@ function Forms() {
     import.meta.env.VITE_API_URL || "https://portfolio-4183.onrender.com";
   const cleanURL = API_URL.replace(/\/$/, ""); 
 
-  
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setErrors({ ...errors, [e.target.name]: "" });
@@ -29,18 +32,18 @@ function Forms() {
   const validate = () => {
     let newErrors = {};
 
-    if (!formData.nome.trim()) newErrors.nome = "Por favor, digite seu nome.";
+    if (!formData.nome.trim()) newErrors.nome = t("forms.errors.name_empty");
 
     if (!formData.email.trim()) {
-      newErrors.email = "O email é obrigatório.";
+      newErrors.email = t("forms.errors.email_empty");
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Digite um email válido.";
+      newErrors.email = t("forms.errors.email_invalid");
     }
 
     if (!formData.message.trim()) {
-      newErrors.message = "A mensagem não pode estar vazia.";
+      newErrors.message = t("forms.errors.message_empty");
     } else if (formData.message.length < 10) {
-      newErrors.message = "A mensagem deve ter pelo menos 10 caracteres.";
+      newErrors.message = t("forms.errors.message_min_len");
     }
 
     return newErrors;
@@ -70,14 +73,14 @@ function Forms() {
       
 
       const result = await response.json().catch((err) => {
-        return { error: "Resposta inválida do servidor" };
+        return { error: t("forms.status.invalid_response") };
       });
 
 
       if (response.ok) {
         setStatus({
           loading: false,
-          success: "Mensagem enviada com sucesso!",
+          success: t("forms.status.success"),
           error: null,
         });
         setFormData({ nome: "", email: "", message: "" });
@@ -90,7 +93,7 @@ function Forms() {
         setStatus({
           loading: false,
           success: null,
-          error: result.error || "Erro ao enviar.",
+          error: result.error || t("forms.status.error_sending"),
         });
       }
     } catch (err) {
@@ -98,7 +101,7 @@ function Forms() {
       setStatus({
         loading: false,
         success: null,
-        error: "Erro de conexão com o servidor.",
+        error: t("forms.status.server_conn_error"),
       });
     }
   };
@@ -106,11 +109,10 @@ function Forms() {
   return (
     <section className="py-16 bg-black text-white text-center" id="forms">
       <h1 className="text-3xl md:text-4xl font-bold mb-4">
-        Entre em contato comigo
+        {t("forms.title")}
       </h1>
       <p className="text-gray-400 max-w-2xl mx-auto mb-10">
-        Tem um projeto em mente, uma oportunidade profissional ou só quer trocar
-        uma ideia? Me manda um e-mail que eu responderei o mais rápido possível.
+        {t("forms.subtitle")}
       </p>
 
       <motion.form
@@ -127,7 +129,7 @@ function Forms() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div>
             <label htmlFor="nome" className="block text-sm font-medium mb-1">
-              Digite seu nome:
+              {t("forms.label_name")}
             </label>
             <input
               type="text"
@@ -135,7 +137,7 @@ function Forms() {
               name="nome"
               value={formData.nome}
               onChange={handleChange}
-              placeholder="Seu nome..."
+              placeholder={t("forms.placeholder_name")}
               className={`w-full bg-neutral-900 border ${
                 errors.nome ? "border-red-500" : "border-gray-700"
               } rounded-md p-3 text-white`}
@@ -147,7 +149,7 @@ function Forms() {
 
           <div>
             <label htmlFor="email" className="block text-sm font-medium mb-1">
-              Digite seu email:
+              {t("forms.label_email")}
             </label>
             <input
               type="email"
@@ -155,7 +157,7 @@ function Forms() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="seu.email@exemplo.com"
+              placeholder={t("forms.placeholder_email")}
               className={`w-full bg-neutral-900 border ${
                 errors.email ? "border-red-500" : "border-gray-700"
               } rounded-md p-3 text-white`}
@@ -169,7 +171,7 @@ function Forms() {
         {/* Mensagem */}
         <div className="mb-6">
           <label htmlFor="message" className="block text-sm font-medium mb-1">
-            Digite sua mensagem:
+            {t("forms.label_message")}
           </label>
           <textarea
             id="message"
@@ -177,7 +179,7 @@ function Forms() {
             rows="5"
             value={formData.message}
             onChange={handleChange}
-            placeholder="Escreva sua mensagem..."
+            placeholder={t("forms.placeholder_message")}
             className={`w-full bg-neutral-900 border ${
               errors.message ? "border-red-500" : "border-gray-700"
             } rounded-md p-3 text-white resize-none`}
@@ -188,46 +190,44 @@ function Forms() {
         </div>
 
         {/* Botão */}
-        {/* Botão */}
-<div className="text-center">
-  <button
-    type="submit"
-    disabled={status.loading}
-    className="px-6 py-3 rounded-md font-medium bg-blue-600 hover:bg-blue-700 transition text-white disabled:opacity-70 disabled:cursor-not-allowed flex items-center gap-2 mx-auto"
-  >
-    {status.loading ? (
-      <>
-        <svg
-          className="animate-spin h-4 w-4 text-white"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            className="opacity-25"
-            cx="12" cy="12" r="10"
-            stroke="currentColor" strokeWidth="4"
-          />
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8v8z"
-          />
-        </svg>
-        Estamos enviando sua mensagem... Enviando...
-      </>
-    ) : (
-      "Enviar"
-    )}
-  </button>
+        <div className="text-center">
+          <button
+            type="submit"
+            disabled={status.loading}
+            className="px-6 py-3 rounded-md font-medium bg-blue-600 hover:bg-blue-700 transition text-white disabled:opacity-70 disabled:cursor-not-allowed flex items-center gap-2 mx-auto"
+          >
+            {status.loading ? (
+              <>
+                <svg
+                  className="animate-spin h-4 w-4 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12" cy="12" r="10"
+                    stroke="currentColor" strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8z"
+                  />
+                </svg>
+                {t("forms.btn_sending")}
+              </>
+            ) : (
+              t("forms.btn_send")
+            )}
+          </button>
 
-  
-  {status.loading && (
-    <p className="text-gray-400 text-sm mt-3 animate-pulse">
-      Aguarde ! Estamos ligando o servidor. ele pode levar alguns segundos para responder...
-    </p>
-  )}
-</div>
+          {status.loading && (
+            <p className="text-gray-400 text-sm mt-3 animate-pulse">
+              {t("forms.server_warning")}
+            </p>
+          )}
+        </div>
 
         {/* Mensagens de status */}
         {status.success && (

@@ -2,10 +2,14 @@ import {FaReact, FaJsSquare,FaGitAlt,FaBootstrap, FaFigma, FaAngular } from "rea
 import { SiTailwindcss, SiNodedotjs, SiTypescript } from "react-icons/si";
 import { TbBrandCSharp } from "react-icons/tb";
 import { FaAws } from "react-icons/fa6";
+import { useLanguage } from "../context/LanguageContext";
+
 function Skills() {
+  const { t } = useLanguage();
+
   const categories = [
     {
-      nome: "Frontend",
+      nome: t("skills.categories.frontend"),
       skills: [
         { nome: "React", icon: <FaReact className="text-sky-400 w-12 h-12" /> },
         { nome: "JavaScript", icon: <FaJsSquare className="text-yellow-400 w-12 h-12" /> },
@@ -17,21 +21,21 @@ function Skills() {
       ],
     },
     {
-      nome: "Backend",
+      nome: t("skills.categories.backend"),
       skills: [
         { nome: "Node.js", icon: <SiNodedotjs className="text-green-500 w-12 h-12" /> },
         { nome: "C# / .NET  ", icon: <TbBrandCSharp className="text-[#9B4F96] w-12 h-12" /> },
       ],
     },
     {
-      nome: "Ferramentas",
+      nome: t("skills.categories.tools"),
       skills: [
         { nome: "Git", icon: <FaGitAlt className="text-[#F05033] w-12 h-12" /> },
         { nome: "Figma", icon: <FaFigma className="text-[#F24E1E] w-12 h-12" /> },
   ],
     },
     {
-      nome: "Outras Habilidades",
+      nome: t("skills.categories.other"),
       skills: [
         { nome: "AWS", icon: <FaAws className="text-[#FF9900] w-12 h-12" /> },
       ],
@@ -40,7 +44,7 @@ function Skills() {
 
   return (
     <section id="skills" className="py-20 bg-[#07090e] text-white text-center">
-      <h2 className="text-4xl font-bold mb-16 text-gray-200">Minhas Skills</h2>
+      <h2 className="text-4xl font-bold mb-16 text-gray-200">{t("skills.title")}</h2>
 
       <div className="flex flex-col items-center gap-16 max-w-6xl mx-auto px-6">
         {categories.map((category, index) => (
@@ -70,7 +74,7 @@ function Skills() {
       </div>
 
       <p className="text-gray-500 text-sm mt-16">
-        Um conjunto equilibrado de tecnologias modernas para desenvolvimento web completo.
+        {t("skills.footer")}
       </p>
     </section>
   );

@@ -7,11 +7,13 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Header from './components/Header';
 import Certifications from './components/Certifications';
+import LanguageSwitcher from './components/LanguageSwitcher';
 
 
 function App() {
   return (
     <div>
+      <LanguageSwitcher />
       <Header/>
       <AboutMe />     
       <Experience />  

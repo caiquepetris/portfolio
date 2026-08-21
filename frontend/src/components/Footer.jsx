@@ -1,8 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { BsSubstack } from "react-icons/bs";
+import { useLanguage } from "../context/LanguageContext";
 
 function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="text-white py-6 mt-12 border-t border-gray-700 bg-[#07090e]">
       <div className="flex flex-col items-center space-y-4 max-w-5xl mx-auto px-4">
@@ -52,13 +55,12 @@ function Footer() {
 
         <div className="text-center text-xs text-gray-400 leading-relaxed">
           <p>
-            <strong>&copy; PETRIS</strong> {new Date().getFullYear()} — Todos os
-            direitos reservados.
+            <strong>&copy; PETRIS</strong> {new Date().getFullYear()} — {t("footer.rights")}
           </p>
           <p className="mt-1">
-            Desenvolvido com{" "}
+            {t("footer.developed_with")}{" "}
             <span className="font-semibold text-gray-300">React</span>,{" "}
-            <span className="font-semibold text-gray-300">TailwindCSS</span> e{" "}
+            <span className="font-semibold text-gray-300">TailwindCSS</span> {t("footer.conjunction")}{" "}
             <span className="font-semibold text-gray-300">Node.js</span>.
           </p>
         </div>
