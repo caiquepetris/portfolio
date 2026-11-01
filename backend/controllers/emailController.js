@@ -28,7 +28,7 @@ export async function sendEmail(req, res) {
   const safeMessage = sanitize(message);
 
   try {
-    await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: "onboarding@resend.dev",
       to: ["caiquepetris@gmail.com"],
       subject: `Novo contato pelo portfólio`,
@@ -40,6 +40,12 @@ export async function sendEmail(req, res) {
       `,
     });
 
+    if (error) {
+      console.error(`[${new Date().toISOString()}] Resend retornou erro: `, error);
+      return res.status(500).json({ success: false, error: "Erro interno. Tente novamente." });
+    }
+
+    console.log(`[${new Date().toISOString()}] E-mail enviado com sucesso. ID: ${data?.id}`);
     res.status(200).json({ success: true });
   } catch (err) {
     console.error(`[${new Date().toISOString()}] Erro ao enviar e-mail: `, err);
