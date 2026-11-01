@@ -1,6 +1,22 @@
 import resend from "../config/resend.js";
 import { sanitize, isValidEmail } from "../utils/validators.js";
 
+export async function getLogs(req, res) {
+  try {
+    const { data, error } = await resend.logs.list();
+
+    if (error) {
+      console.error(`[${new Date().toISOString()}] Erro ao buscar logs do Resend: `, error);
+      return res.status(500).json({ success: false, error });
+    }
+
+    res.status(200).json({ success: true, data });
+  } catch (err) {
+    console.error(`[${new Date().toISOString()}] Erro inesperado ao buscar logs: `, err);
+    res.status(500).json({ success: false, error: "Erro interno." });
+  }
+}
+
 export async function sendEmail(req, res) {
   const { nome, email, message } = req.body;
 
