@@ -22,12 +22,26 @@ export const translations = {
       title: "Minhas experiências:",
       items: [
         {
+          empresa: "Vivo Telefônica",
+          cor: "#660099",
+          titulo: 'Estágio de Desenvolvimento de Software <span class="font-semibold">@ Vivo Telefônica</span>',
+          periodo: "Outubro de 2026 - Atualmente",
+          bullets: [
+            "Atuação em desenvolvimento de software com <strong>Python</strong> e <strong>React</strong>, apoiando a equipe do centro de operações da VIVO em:",
+            "Desenvolvimento de dashboards para visualização e acompanhamento de dados.",
+            "Participação em projetos de desenvolvimento, da implementação à entrega.",
+            "Manutenção e atualização de sistemas web.",
+            "Apoio na administração e consulta de bancos de dados.",
+            "Implantação de automações para otimizar processos e reduzir tarefas manuais."
+          ]
+        },
+        {
           empresa: "T-Systems",
           cor: "#e20074",
           titulo: 'Estágio de Suporte de TI Industrial <span class="font-semibold">@ T-Systems</span>',
-          periodo: "Abril de 2025 - Atualmente",
+          periodo: "Abril de 2025 - Setembro de 2026",
           bullets: [
-            "Atuo diretamente no cliente <strong>Mercedes-Benz</strong>, oferecendo suporte de TI para ambientes industriais."
+            "Atuei diretamente no cliente <strong>Mercedes-Benz</strong>, oferecendo suporte de TI para ambientes industriais."
           ]
         },
         {
@@ -120,10 +134,24 @@ export const translations = {
       title: "My experience:",
       items: [
         {
+          empresa: "Vivo Telefônica",
+          cor: "#660099",
+          titulo: 'Software Development Internship <span class="font-semibold">@ Vivo Telefônica</span>',
+          periodo: "October 2026 - Present",
+          bullets: [
+            "Software development with <strong>Python</strong> and <strong>React</strong>, supporting the VIVO operations center team:",
+            "Development of dashboards for data visualization and monitoring.",
+            "Participation in development projects, from implementation to delivery.",
+            "Maintenance and update of web systems.",
+            "Support in database administration and querying.",
+            "Implementation of automations to optimize processes and reduce manual tasks."
+          ]
+        },
+        {
           empresa: "T-Systems",
           cor: "#e20074",
           titulo: 'Industrial IT Support Internship <span class="font-semibold">@ T-Systems</span>',
-          periodo: "April 2025 - Present",
+          periodo: "April 2025 - September 2026",
           bullets: [
             "I work directly at the client <strong>Mercedes-Benz</strong>, providing IT support for industrial environments."
           ]

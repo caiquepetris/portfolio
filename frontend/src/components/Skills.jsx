@@ -1,5 +1,5 @@
 import {FaReact, FaJsSquare,FaGitAlt,FaBootstrap, FaFigma, FaAngular } from "react-icons/fa";
-import { SiTailwindcss, SiNodedotjs, SiTypescript } from "react-icons/si";
+import { SiTailwindcss, SiNodedotjs, SiTypescript, SiMysql } from "react-icons/si";
 import { TbBrandCSharp } from "react-icons/tb";
 import { FaAws } from "react-icons/fa6";
 import { useLanguage } from "../context/LanguageContext";
@@ -25,6 +25,7 @@ function Skills() {
       skills: [
         { nome: "Node.js", icon: <SiNodedotjs className="text-green-500 w-12 h-12" /> },
         { nome: "C# / .NET  ", icon: <TbBrandCSharp className="text-[#9B4F96] w-12 h-12" /> },
+        { nome: "MySQL", icon: <SiMysql className="text-[#4479A1] w-12 h-12" /> },
       ],
     },
     {
