@@ -13,7 +13,7 @@ export async function getLogs(req, res) {
     res.status(200).json({ success: true, data });
   } catch (err) {
     console.error(`[${new Date().toISOString()}] Erro inesperado ao buscar logs: `, err);
-    res.status(500).json({ success: false, error: "Erro interno." });
+    res.status(500).json({ success: false, error: err?.message || String(err) });
   }
 }
 
