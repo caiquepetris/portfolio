@@ -22,7 +22,6 @@ function Forms() {
     import.meta.env.VITE_API_URL || "https://portfolio-4183.onrender.com";
   const cleanURL = API_URL.replace(/\/$/, ""); 
 
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setErrors({ ...errors, [e.target.name]: "" });
@@ -62,20 +61,15 @@ function Forms() {
     setStatus({ loading: true, success: null, error: null });
 
     try {
-   
-
       const response = await fetch(`${cleanURL}/sendEmail`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      
-
-      const result = await response.json().catch((err) => {
+      const result = await response.json().catch(() => {
         return { error: t("forms.status.invalid_response") };
       });
-
 
       if (response.ok) {
         setStatus({
