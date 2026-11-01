@@ -3,9 +3,15 @@ import { sanitize, isValidEmail } from "../utils/validators.js";
 
 export async function getLogs(req, res) {
   try {
-    // No SDK da Resend a listagem de emails enviados fica em resend.emails
+    const rawKey = process.env.RESEND_API_KEY || "";
+    const keyDiagnostic = {
+      length: rawKey.length,
+      startsWithRe: rawKey.startsWith("re_"),
+      preview: rawKey ? `${rawKey.slice(0, 5)}...${rawKey.slice(-4)}` : "VAZIA",
+    };
+
     const response = await resend.emails.list ? await resend.emails.list() : { data: "list method not available" };
-    res.status(200).json({ success: true, response });
+    res.status(200).json({ success: true, keyDiagnostic, response });
   } catch (err) {
     console.error(`[${new Date().toISOString()}] Erro ao buscar logs: `, err);
     res.status(500).json({ success: false, error: err?.message || String(err) });
@@ -40,8 +46,8 @@ export async function sendEmail(req, res) {
 
   console.log(`[2] ✅ Validação passou`);
 
-  const safeName    = sanitize(nome);
-  const safeEmail   = sanitize(email);
+  const safeName = sanitize(nome);
+  const safeEmail = sanitize(email);
   const safeMessage = sanitize(message);
 
   console.log(`[3] 📤 Enviando para o Resend... Chave configurada?`, !!process.env.RESEND_API_KEY);
@@ -61,9 +67,9 @@ export async function sendEmail(req, res) {
 
     if (error) {
       console.error(`[4] ❌ Resend retornou erro:`, error);
-      return res.status(500).json({ 
-        success: false, 
-        error: error.message || error.name || JSON.stringify(error) 
+      return res.status(500).json({
+        success: false,
+        error: error.message || error.name || JSON.stringify(error)
       });
     }
 
@@ -72,9 +78,9 @@ export async function sendEmail(req, res) {
     return res.status(200).json({ success: true, id: data?.id });
   } catch (err) {
     console.error(`[${new Date().toISOString()}] Erro ao enviar e-mail (catch): `, err);
-    return res.status(500).json({ 
-      success: false, 
-      error: err?.message || String(err) 
+    return res.status(500).json({
+      success: false,
+      error: err?.message || String(err)
     });
   }
 }
