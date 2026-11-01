@@ -4,6 +4,10 @@ import emailRoutes from "./routes/emailRoutes.js";
 
 const app = express();
 
+// Necessário para ambientes com proxy reverso (Render, Heroku, etc.)
+// Permite que o express-rate-limit identifique o IP real do cliente via X-Forwarded-For
+app.set("trust proxy", 1);
+
 app.use(
   cors({
     origin: [
