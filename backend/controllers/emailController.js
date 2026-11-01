@@ -65,7 +65,7 @@ export async function sendEmail(req, res) {
     res.status(200).json({ success: true });
   } catch (err) {
     console.error(`[${new Date().toISOString()}] Erro ao enviar e-mail: `, err);
-    res.status(500).json({ success: false, error: "Erro interno. Tente novamente." });
+    res.status(500).json({ success: false, error: err?.message || String(err) });
   }
 }
 
